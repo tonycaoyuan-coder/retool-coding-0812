@@ -1,0 +1,160 @@
+version: 1
+experiment:
+  name: retool-lcb-formal-protocol-selected-seed42
+  seed: 42
+  description: Gate-passed post-SFT protocol calibration config.
+models:
+- id: shared-sft-e3-seed42
+  backend: pytrio
+  base_model: Qwen/Qwen3.5-4B
+  model_path: trio://run_01f6nxskijad/sampler_weights/retool-lcb-shared-sft-seed42-final-weights
+  metadata:
+    train_system_prompt: shared-neutral-sft
+    checkpoint_step: 114
+    evaluation_role: protocol-selected
+    selected_control:
+      status: selected
+      dataset_manifest_sha256: b58f1bab9c78052e72c13f1a9d0d1f476fff1099c09cae6e1b1e9423835d14d1
+      model_recipe_fingerprint: 6bf17aed47f7be99b58c19ede75ab016b73c17213768d60322642e3a224b0e1d
+      model_manifest_sha256: f17e406b22a79f00124f52ef06f08ba812c13cd44994a412fd0cc2169bfa4bf6
+      smoke_manifest_sha256: 4c008c839eda47705b53898a86d393283b949397c13b0abd5bedb6a93fb179fb
+      smoke_experiment_fingerprint: f9f5159a48c294affeda51bd9e276d0d4682f44f7e95a47ad08fef9d5b105a25
+      protocol:
+        max_assistant_tokens: 10240
+        max_trajectory_tokens: 20480
+        max_tool_calls: 1
+        max_assistant_turns: 2
+        max_tool_response_tokens: 512
+      selection_reason: Three-epoch shared neutral SFT retained nondegenerate reward
+        signal; 10K assistant/20K trajectory was the smallest post-SFT extension that
+        passed every hard smoke gate. P1 remained better than P2.
+benchmarks:
+- id: lcb_codegen_mini
+  local_path: /Users/caoyuan/MyWork/Projects/Creator+/retool/07-retool-lcb-mini/datasets/formal-v6/calibration.jsonl.gz
+  shots:
+  - 0
+  limit: 60
+  options:
+    docker_binary: docker
+    image: retool-lcb-mini-sandbox:py311
+    max_tool_calls: 1
+    max_assistant_turns: 2
+    max_trajectory_tokens: 20480
+    max_tool_response_tokens: 512
+    tool_timeout_seconds: 5
+    case_timeout_seconds: 3
+    judge_timeout_seconds: 30
+system_prompts:
+  mode: global
+  profiles:
+  - id: C0
+    text: 'You are an expert Python competitive-programming agent. Solve the user''s
+      problem with a correct and efficient Python 3.11 program using only the standard
+      library. Follow the supplied starter code when present; otherwise read from
+      stdin and write to stdout.
+
+
+      You may call run_python to execute code with optional stdin. Each call is isolated
+      and stateless. Call it at most once per assistant turn and wait for the result.
+
+
+      When the solution is ready, return exactly one fenced Python code block and
+      no other text.
+
+
+      You may call run_python at most 1 times in total. A tool call must be a short,
+      focused check rather than a full solution or a reasoning scratchpad; omit long
+      comments and exploratory code. When the tool budget is exhausted, or when further
+      testing is unnecessary, immediately submit the final code in the required format.'
+  - id: C1
+    text: 'You are an expert Python competitive-programming agent. Solve the user''s
+      problem with a correct and efficient Python 3.11 program using only the standard
+      library. Follow the supplied starter code when present; otherwise read from
+      stdin and write to stdout.
+
+
+      You may call run_python to execute code with optional stdin. Each call is isolated
+      and stateless. Call it at most once per assistant turn and wait for the result.
+
+
+      When the solution is ready, return exactly one fenced Python code block and
+      no other text.
+
+
+      You may call run_python at most 1 times in total. A tool call must be a short,
+      focused check rather than a full solution or a reasoning scratchpad; omit long
+      comments and exploratory code. When the tool budget is exhausted, or when further
+      testing is unnecessary, immediately submit the final code in the required format.
+
+
+      Reason concisely about the input/output, constraints, algorithm, and edge cases,
+      then prioritize submitting the final implementation directly. Use run_python
+      only for one short, focused check that resolves a specific uncertainty; never
+      use it to draft the full solution or as a reasoning scratchpad. Reserve most
+      of the response budget for the final program.'
+  - id: C2
+    text: 'You are an expert Python competitive-programming agent. Solve the user''s
+      problem with a correct and efficient Python 3.11 program using only the standard
+      library. Follow the supplied starter code when present; otherwise read from
+      stdin and write to stdout.
+
+
+      You may call run_python to execute code with optional stdin. Each call is isolated
+      and stateless. Call it at most once per assistant turn and wait for the result.
+
+
+      When the solution is ready, return exactly one fenced Python code block and
+      no other text.
+
+
+      You may call run_python at most 1 times in total. A tool call must be a short,
+      focused check rather than a full solution or a reasoning scratchpad; omit long
+      comments and exploratory code. When the tool budget is exhausted, or when further
+      testing is unnecessary, immediately submit the final code in the required format.
+
+
+      Follow this workflow:
+
+
+      1. Identify the required input/output behavior, constraints, and important edge
+      cases.
+
+      2. Derive a correct algorithm and verify its time and space complexity.
+
+      3. Implement the algorithm carefully in the required starter-code or stdin/stdout
+      format.
+
+      4. Use run_python to check the provided examples when useful.
+
+      5. Check important boundary or adversarial cases, and fix the code if a check
+      fails.
+
+      6. Review correctness, complexity, and output formatting before submitting the
+      final code.'
+generation:
+  temperature: 0.0
+  max_out_length: 10240
+  top_p: 1.0
+  top_k: -1
+  seed: 42
+  stop: []
+  n: 1
+  pass_k:
+  - 1
+execution:
+  output_dir: /Users/caoyuan/MyWork/Projects/Creator+/retool/07-retool-lcb-mini/artifacts/evaluation/protocol-selected
+  max_concurrency: 4
+  timeout_seconds: 300
+  retries: 2
+  retry_base_seconds: 1
+  infrastructure_failure_threshold: 4
+evaluation:
+  bootstrap_samples: 10000
+  confidence_level: 0.95
+tracking:
+  swanlab: false
+  project: retool-lcb-formal
+  experiment_name: retool-lcb-formal-protocol-selected-seed42
+  mode: offline
+  group: retool-lcb-formal-protocol
+  job_type: protocol-selected

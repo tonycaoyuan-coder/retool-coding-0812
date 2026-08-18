@@ -1,0 +1,19 @@
+{
+  "image": "retool-lcb-mini-sandbox:py311",
+  "image_id": "sha256:62def2762600587bb0ff10108585eaf181b53aee394f11c7d5be635232eda023",
+  "architecture": "arm64",
+  "docker_binary": "docker",
+  "checks": {
+    "run_python": true,
+    "read_only": true,
+    "network_none": true,
+    "host_workspace_hidden": true,
+    "stateless_container": true,
+    "tool_timeout": true,
+    "memory_limit": true,
+    "four_way_concurrency": true,
+    "stdin_judge": true,
+    "functional_judge": true
+  },
+  "four_way_seconds": 1.2592344579970813
+}

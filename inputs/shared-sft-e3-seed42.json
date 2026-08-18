@@ -1,0 +1,33 @@
+{
+  "base_model": "Qwen/Qwen3.5-4B",
+  "complete": true,
+  "duration_seconds": 1499.6911193330016,
+  "lora_rank": 32,
+  "metrics_path": "metrics.jsonl",
+  "name": "retool-lcb-shared-sft-seed42",
+  "optimizer_steps": 114,
+  "recipe": {
+    "base_model": "Qwen/Qwen3.5-4B",
+    "beta1": 0.9,
+    "beta2": 0.95,
+    "epochs": 3,
+    "kind": "shared-neutral-cold-start-sft-v1",
+    "learning_rate": 1e-05,
+    "lora_rank": 32,
+    "loss_fn": "cross_entropy",
+    "mask": "assistant-only manual autoregressive shift",
+    "max_context_tokens": 12288,
+    "max_micro_batch_items": 8,
+    "max_micro_batch_padded_tokens": 65536,
+    "source_manifest_sha256": "245769e9ee9826772dc82fb44835f3e723356370e9403792fe0e31360cfb4c5d"
+  },
+  "recipe_fingerprint": "6bf17aed47f7be99b58c19ede75ab016b73c17213768d60322642e3a224b0e1d",
+  "sampler_weights_path": "trio://run_01f6nxskijad/sampler_weights/retool-lcb-shared-sft-seed42-final-weights",
+  "seed": 42,
+  "selected_trajectories": 300,
+  "source_fingerprint": "c1879d2f01cb0216eb9f4e81b196c635fc3036af36a5813b52c29aa94273b768",
+  "source_manifest": "/Users/caoyuan/MyWork/Projects/Creator+/retool/07-retool-lcb-mini/artifacts/training/shared-cold-start/source/manifest.json",
+  "source_manifest_sha256": "245769e9ee9826772dc82fb44835f3e723356370e9403792fe0e31360cfb4c5d",
+  "state_path": "trio://run_01f6nxskijad/weights/retool-lcb-shared-sft-seed42-final-state",
+  "swanlab_run_id": "c2s8rofd"
+}

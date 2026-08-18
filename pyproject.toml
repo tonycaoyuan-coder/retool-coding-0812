@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling>=1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "retool-coding-0812"
+version = "0.1.0"
+description = "Frozen seed-42 ReTool coding GRPO reproduction"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+    "creator-myeval[tracking]",
+    "numpy>=2.0.0",
+    "pytrio==0.2.5",
+    "pyyaml>=6,<7",
+    "swanlab==0.9.2",
+    "tqdm>=4.68.0",
+]
+
+[tool.uv.sources]
+creator-myeval = { path = "../../../myeval", editable = true }
+
+[project.entry-points."myeval.plugins"]
+retool-coding-0812 = "retool_coding_0812.myeval_plugin:register"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/retool_coding_0812"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

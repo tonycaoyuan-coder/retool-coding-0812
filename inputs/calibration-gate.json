@@ -1,0 +1,80 @@
+{
+  "passed": true,
+  "experiment_fingerprint": "f9f5159a48c294affeda51bd9e276d0d4682f44f7e95a47ad08fef9d5b105a25",
+  "fingerprint_payload": {
+    "base_model": "Qwen/Qwen3.5-4B",
+    "model_fingerprint": "6bf17aed47f7be99b58c19ede75ab016b73c17213768d60322642e3a224b0e1d",
+    "dataset_manifest_sha256": "b58f1bab9c78052e72c13f1a9d0d1f476fff1099c09cae6e1b1e9423835d14d1",
+    "protocol": {
+      "max_assistant_tokens": 10240,
+      "max_trajectory_tokens": 20480,
+      "max_tool_calls": 1,
+      "max_assistant_turns": 2,
+      "max_tool_response_tokens": 512
+    },
+    "prompt_sha256": {
+      "c0": "3615eace31763aadec89b9c4a37b787d34f63d999b440a81a8c0f0fce1f69eb9",
+      "c1": "16ec75636b1a17f6668fe86c9cce431deda7f1f77430361cd0e59cf296cc43b7",
+      "c2": "edd1a8c5a3e6f112e7afbd37e94bed275d142e72222cb835eb5920912f1b4c1e"
+    },
+    "tools_sha256": "e6c348c4bfa40f3219d0e2ea22fcdcb9b62da6f8613cbc532a3c4d9cf2b23089"
+  },
+  "data": {
+    "path": "/Users/caoyuan/MyWork/Projects/Creator+/retool/07-retool-lcb-mini/datasets/formal-v6/calibration.jsonl.gz",
+    "split": "calibration",
+    "file_sha256": "e10503ada043d21196ae3c2420a2dd016a0e78b390f1c068a71820d04322137e",
+    "manifest_path": "/Users/caoyuan/MyWork/Projects/Creator+/retool/07-retool-lcb-mini/datasets/formal-v6/manifest.json",
+    "manifest_sha256": "b58f1bab9c78052e72c13f1a9d0d1f476fff1099c09cae6e1b1e9423835d14d1",
+    "count": 60
+  },
+  "preflight_manifest": "/Users/caoyuan/MyWork/Projects/Creator+/retool/07-retool-lcb-mini/artifacts/preflight/docker-image.json",
+  "model_manifest": "/Users/caoyuan/MyWork/Projects/Creator+/retool/07-retool-lcb-mini/artifacts/training/shared-cold-start-e3/seed42/manifest.json",
+  "model_manifest_sha256": "f17e406b22a79f00124f52ef06f08ba812c13cd44994a412fd0cc2169bfa4bf6",
+  "gate": {
+    "min_format_rate_per_variant": 0.9,
+    "max_token_cap_hit_rate_per_variant": 0.05,
+    "min_valid_tool_call_rate_per_variant": 0.8,
+    "min_nondegenerate_group_rate_per_variant": 0.4
+  },
+  "variants": {
+    "c0": {
+      "trajectories": 64,
+      "format_rate": 0.953125,
+      "nondegenerate_groups": 4,
+      "nondegenerate_group_rate": 0.5,
+      "valid_tool_call_rate": 0.9454545454545454,
+      "tool_call_attempts": 55,
+      "token_cap_hit_rate": 0.03125,
+      "mean_reward": 0.6167670003607504
+    },
+    "c1": {
+      "trajectories": 64,
+      "format_rate": 0.953125,
+      "nondegenerate_groups": 5,
+      "nondegenerate_group_rate": 0.625,
+      "valid_tool_call_rate": 0.9818181818181818,
+      "tool_call_attempts": 55,
+      "token_cap_hit_rate": 0.03125,
+      "mean_reward": 0.6028104707792208
+    },
+    "c2": {
+      "trajectories": 64,
+      "format_rate": 0.9375,
+      "nondegenerate_groups": 4,
+      "nondegenerate_group_rate": 0.5,
+      "valid_tool_call_rate": 0.9333333333333333,
+      "tool_call_attempts": 60,
+      "token_cap_hit_rate": 0.046875,
+      "mean_reward": 0.5767958603896104
+    }
+  },
+  "docker": {
+    "docker/calls": 344.0,
+    "docker/tool_calls": 162.0,
+    "docker/judge_calls": 182.0,
+    "docker/infrastructure_error_rate": 0.0,
+    "docker/timeout_rate": 0.00872093023255814,
+    "docker/mean_seconds": 2.6990376163604135
+  },
+  "policy": "Proceed to GRPO; measurement and reward-signal gates passed."
+}

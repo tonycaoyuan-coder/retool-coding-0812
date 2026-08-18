@@ -1,0 +1,11 @@
+.venv
+.DS_Store
+.pytest_cache/
+__pycache__/
+*.pyc
+artifacts/**
+!artifacts/.gitkeep
+swanlog/
+configs/generated/
+# This is a local symlink to the 2.3 GB frozen dataset in the sibling project.
+inputs/formal-v6
